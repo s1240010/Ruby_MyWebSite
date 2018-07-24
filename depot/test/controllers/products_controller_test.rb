@@ -3,11 +3,17 @@ require 'test_helper'
 class ProductsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @product = products(:one)
+    @update = {
+      title:  "Lirem Ipsum",
+      description: "Wibblesmare fun",
+      name: "nemo"
+    }
   end
 
   test "should get index" do
-    get products_url
+    get new_product_url
     assert_response :success
+    assert_not_till assigns(:products)
   end
 
   test "should get new" do
